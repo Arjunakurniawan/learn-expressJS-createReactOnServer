@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <title>learn Basic Route</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- REACT-->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+
+    <!-- REACT FOR WEB -->
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+
+    <!-- BABEL -->
+    <script src="https://unpkg.com/@babel/standalone/babel.js"></script>
+
+    <!-- let's starting code-->
+    <script type="text/babel">
+      function Navbar() {
+        return (
+          <nav className="navbar__container">
+            <h2 className="navbar__title">Navbar</h2>
+            <ul className="navbar__groub">
+              <li className="navbar__link center">
+                <a href="#">Home</a>
+              </li>
+              <li className="navbar__link">
+                <a href="#">About</a>
+              </li>
+            </ul>
+          </nav>
+        );
+      }
+
+      function App() {
+        return <Navbar />;
+      }
+      ReactDOM.render(<App />, root);
+    </script>
+  </body>
+</html>
