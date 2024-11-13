@@ -17,24 +17,64 @@
 
     <!-- let's starting code-->
     <script type="text/babel">
-      function Navbar() {
+      function Home() {
         return (
-          <nav className="navbar__container">
-            <h2 className="navbar__title">Navbar</h2>
-            <ul className="navbar__groub">
-              <li className="navbar__link center">
-                <a href="#">Home</a>
-              </li>
-              <li className="navbar__link">
-                <a href="#">About</a>
-              </li>
-            </ul>
-          </nav>
+          <>
+            <h1>ini halaman home ygy.</h1>
+          </>
+        );
+      }
+
+      function About() {
+        return (
+          <>
+            <h1>ini halaman about ygy.</h1>
+          </>
+        );
+      }
+
+      function Navbar({ onNavigate }) {
+        return (
+          <>
+            <nav className="navbar__container">
+              <h2 className="navbar__title">Navbar</h2>
+              <ul className="navbar__groub">
+                <li
+                  className="navbar__link"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate("home");
+                  }}
+                >
+                  Home
+                </li>
+                <li
+                  className="navbar__link"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate("about");
+                  }}
+                >
+                  About
+                </li>
+              </ul>
+            </nav>
+          </>
         );
       }
 
       function App() {
-        return <Navbar />;
+        const [activePage, setActivePage] = React.useState("home");
+
+        function HandleNavigation(page) {
+          setActivePage(page);
+        }
+        return (
+          <>
+            <Navbar onNavigate={HandleNavigation} />
+            <div>{activePage === "home" ? <Home /> : <About />}</div>
+          </>
+        );
       }
       ReactDOM.render(<App />, root);
     </script>

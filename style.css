@@ -20,18 +20,29 @@
   list-style: none;
 }
 
-.navbar__link a {
+.navbar__link {
   color: #427aa1;
   text-decoration: none;
+  position: relative;
 }
 
-.navbar__link.center a::after {
-  
+.navbar__link::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  background-color: #427aa1;
+  height: 1px;
+  transform: scaleX(0);
+  bottom: 0;
+  left: 0;
+  transition: transform 0.25s ease-out;
+}
+
+.navbar__link:hover::after {
+  transform: scaleX(1);
   transform-origin: bottom center;
 }
 
-.navbar__link.center a::after:hover {
+.navbar__link:hover {
   color: #064789;
-  transform-origin: bottom center;
 }
-
