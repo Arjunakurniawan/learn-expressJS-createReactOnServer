@@ -39,23 +39,29 @@
             <nav className="navbar__container">
               <h2 className="navbar__title">Navbar</h2>
               <ul className="navbar__groub">
-                <li
-                  className="navbar__link"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    onNavigate("home");
-                  }}
-                >
-                  Home
+                <li className="navbar__item">
+                  <a
+                    className="navbar__link"
+                    href="home"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onNavigate("home");
+                    }}
+                  >
+                    Home
+                  </a>
                 </li>
-                <li
-                  className="navbar__link"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    onNavigate("about");
-                  }}
-                >
-                  About
+                <li className="navbar__item">
+                  <a
+                    className="navbar__link"
+                    href="about"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onNavigate("about");
+                    }}
+                  >
+                    About
+                  </a>
                 </li>
               </ul>
             </nav>
@@ -64,15 +70,17 @@
       }
 
       function App() {
-        const [activePage, setActivePage] = React.useState("home");
+        const [url, setUrl] = React.useState("home");
 
         function HandleNavigation(page) {
-          setActivePage(page);
+          setUrl(page);
+          window.history.pushState(null, "", page === "home" ? "/" : `${page}`);
         }
+
         return (
           <>
             <Navbar onNavigate={HandleNavigation} />
-            <div>{activePage === "home" ? <Home /> : <About />}</div>
+            <div>{url === "home" ? <Home /> : <About />}</div>
           </>
         );
       }
