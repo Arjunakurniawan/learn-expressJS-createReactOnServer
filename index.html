@@ -45,7 +45,7 @@
                     href="home"
                     onClick={(e) => {
                       e.preventDefault();
-                      onNavigate("home");
+                      onNavigate("/");
                     }}
                   >
                     Home
@@ -57,7 +57,7 @@
                     href="about"
                     onClick={(e) => {
                       e.preventDefault();
-                      onNavigate("about");
+                      onNavigate("/about");
                     }}
                   >
                     About
@@ -70,17 +70,28 @@
       }
 
       function App() {
-        const [url, setUrl] = React.useState("home");
+        const [url, setUrl] = React.useState(window.location.pathname);
 
-        function HandleNavigation(page) {
-          setUrl(page);
-          window.history.pushState(null, "", page === "home" ? "/" : `${page}`);
+        React.useEffect(() => {
+          window.history.pushState(null, "", url);
+        }, [url]);
+
+        function HandleNavigation(newUrl) {
+          setUrl(newUrl);
         }
 
         return (
           <>
             <Navbar onNavigate={HandleNavigation} />
-            <div>{url === "home" ? <Home /> : <About />}</div>
+            <div>
+              {url === "/" ? (
+                <Home />
+              ) : url === "/about" ? (
+                <About />
+              ) : (
+                <p>404 not found</p>
+              )}
+            </div>
           </>
         );
       }
